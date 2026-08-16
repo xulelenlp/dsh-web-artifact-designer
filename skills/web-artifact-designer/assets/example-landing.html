@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>山雾咖啡 · 单品手冲豆</title>
+<style>
+  :root {
+    --paper: #f6efe4;      /* 米白纸感底 */
+    --ink: #201a16;        /* 墨黑 */
+    --muted: #7a6f64;      /* 暖灰 */
+    --brand: #b4451f;      /* 陶土红（主色） */
+    --brand-deep: #8a3116;
+    --gold: #c9973f;       /* 铜金（辅色） */
+    --line: #e2d6c3;       /* 细线 */
+    --s1: 4px; --s2: 8px; --s3: 16px; --s4: 24px; --s5: 40px; --s6: 64px; --s7: 96px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--paper); color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.7; -webkit-font-smoothing: antialiased;
+  }
+  .serif { font-family: "Songti SC", "Noto Serif SC", Georgia, "Times New Roman", serif; }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 var(--s4); }
+
+  /* 顶栏 */
+  header { border-bottom: 1px solid var(--line); }
+  .nav { display: flex; justify-content: space-between; align-items: center; padding: var(--s4) 0; }
+  .wordmark { font-weight: 800; letter-spacing: 0.02em; font-size: 1.1rem; }
+  .wordmark small { color: var(--muted); font-weight: 400; margin-left: var(--s2); }
+  .nav-links { display: flex; gap: var(--s4); align-items: center; }
+  .nav-links a { color: var(--ink); text-decoration: none; font-size: .92rem; }
+  .nav-links a:hover { color: var(--brand); }
+  .btn {
+    display: inline-block; background: var(--ink); color: var(--paper);
+    padding: 11px 22px; font-size: .92rem; font-weight: 600;
+    text-decoration: none; border-radius: 2px; transition: background .15s ease;
+  }
+  .btn:hover { background: var(--brand-deep); }
+
+  /* Hero：非对称两栏 */
+  .hero { padding: var(--s7) 0 var(--s6); display: grid; grid-template-columns: 7fr 5fr; gap: var(--s6); align-items: end; }
+  .kicker { font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; color: var(--brand); font-weight: 700; margin-bottom: var(--s3); }
+  .hero h1 { font-size: clamp(2.6rem, 5.5vw, 5rem); line-height: 1.06; letter-spacing: -0.01em; font-weight: 700; }
+  .hero h1 .accent { color: var(--brand); }
+  .hero .aside { border-left: 2px solid var(--brand); padding-left: var(--s4); }
+  .hero .aside p { color: var(--muted); margin-bottom: var(--s4); }
+  .hero .aside .price { font-size: 2rem; font-weight: 700; }
+  .hero .aside .price small { font-size: .9rem; color: var(--muted); font-weight: 400; }
+
+  /* 数据带 */
+  .stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .stats .row { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .stat { padding: var(--s4) 0; }
+  .stat + .stat { border-left: 1px solid var(--line); padding-left: var(--s4); }
+  .stat .num { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em; }
+  .stat .cap { font-size: .85rem; color: var(--muted); }
+
+  /* 产区：编辑式编号列表 */
+  section { padding: var(--s6) 0; }
+  .sec-head { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--line); padding-bottom: var(--s3); margin-bottom: var(--s4); }
+  .sec-head h2 { font-size: 1.6rem; font-weight: 700; }
+  .sec-head .no { font-size: .85rem; color: var(--muted); letter-spacing: .1em; }
+  .origin { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s4); }
+  .origin-card { border: 1px solid var(--line); background: #faf4ea; padding: var(--s4); }
+  .origin-card .idx { font-size: .8rem; color: var(--brand); font-weight: 700; letter-spacing: .12em; }
+  .origin-card h3 { font-size: 1.25rem; margin: var(--s2) 0 var(--s2); }
+  .origin-card p { color: var(--muted); font-size: .94rem; }
+  .origin-card .tags { margin-top: var(--s3); display: flex; gap: var(--s2); flex-wrap: wrap; }
+  .tag { font-size: .75rem; border: 1px solid var(--line); border-radius: 2px; padding: 3px 10px; color: var(--muted); }
+
+  /* 底部 CTA */
+  .cta { background: var(--ink); color: var(--paper); padding: var(--s6) 0; text-align: center; }
+  .cta h2 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.01em; margin-bottom: var(--s3); }
+  .cta p { color: #cbb9a4; margin-bottom: var(--s4); }
+  .cta .btn { background: var(--brand); color: #fff; }
+  .cta .btn:hover { background: var(--gold); }
+
+  footer { padding: var(--s5) 0; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); }
+  footer .wrap { display: flex; justify-content: space-between; }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; gap: var(--s4); }
+    .origin, .stats .row { grid-template-columns: 1fr; }
+    .stat + .stat { border-left: none; border-top: 1px solid var(--line); padding-left: 0; padding-top: var(--s4); }
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap nav">
+      <span class="wordmark">山雾咖啡 <small>MIST COFFEE</small></span>
+      <nav class="nav-links">
+        <a href="#origin">产区</a>
+        <a href="#method">冲煮</a>
+        <a class="btn" href="#buy">购买单品豆</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap hero">
+      <div>
+        <div class="kicker">2026 春季限量 · 水洗处理</div>
+        <h1 class="serif">一杯有<span class="accent">海拔</span>的<br>手冲咖啡</h1>
+      </div>
+      <div class="aside">
+        <p>来自云南保山 1900 米高海拔庄园的单一产地豆，低温慢速水洗，风味干净明亮，带茉莉与柑橘尾韵。</p>
+        <div class="price">¥ 128 <small>/ 250g</small></div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="wrap row">
+        <div class="stat"><div class="num">1,900m</div><div class="cap">庄园海拔</div></div>
+        <div class="stat"><div class="num">72h</div><div class="cap">慢速水洗发酵</div></div>
+        <div class="stat"><div class="num">中浅</div><div class="cap">烘焙度</div></div>
+      </div>
+    </div>
+
+    <section id="origin">
+      <div class="wrap">
+        <div class="sec-head"><h2>本季三支产区豆</h2><span class="no">/ 01 ORIGINS</span></div>
+        <div class="origin">
+          <div class="origin-card">
+            <div class="idx">01 · 保山</div>
+            <h3 class="serif">高黎贡水洗</h3>
+            <p>茉莉、柑橘、蜂蜜。干净明亮的酸质，回甘悠长。</p>
+            <div class="tags"><span class="tag">水洗</span><span class="tag">1900m</span></div>
+          </div>
+          <div class="origin-card">
+            <div class="idx">02 · 普洱</div>
+            <h3 class="serif">孟连日晒</h3>
+            <p>莓果、红酒、黑巧。甜感饱满，body 圆润。</p>
+            <div class="tags"><span class="tag">日晒</span><span class="tag">1600m</span></div>
+          </div>
+          <div class="origin-card">
+            <div class="idx">03 · 临沧</div>
+            <h3 class="serif">邦东厌氧</h3>
+            <p>菠萝、朗姆、可可。发酵感强，风味层次复杂。</p>
+            <div class="tags"><span class="tag">厌氧</span><span class="tag">1750m</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="buy">
+      <div class="wrap">
+        <h2 class="serif">把海拔，冲进你的早晨</h2>
+        <p>下单附赠手冲参数卡，包邮顺丰冷鲜。</p>
+        <a class="btn" href="#">立即购买 ¥128</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 山雾咖啡</span>
+      <span>本页面为自包含 HTML 设计示例</span>
+    </div>
+  </footer>
+
+</body>
+</html>
