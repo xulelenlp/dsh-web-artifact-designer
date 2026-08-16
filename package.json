@@ -1,0 +1,44 @@
+{
+  "name": "dsh-web-artifact-designer",
+  "version": "1.0.0",
+  "description": "DSH 前端设计生成 Skill：把设计需求做成可直接打开的自包含 HTML/SVG 设计稿（海报/信息图/落地页/图表/组件稿）。Adapted from Anthropic canvas-design / web-artifacts-builder; zero runtime beyond markdown.",
+  "license": "MIT",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "skills"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "dsh-skill",
+    "deepseek-harness",
+    "web-design",
+    "agent-skill",
+    "artifact",
+    "canvas-design",
+    "frontend"
+  ],
+  "dependencies": {
+    "yaml": "^2.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xulelenlp/dsh-web-artifact-designer.git"
+  },
+  "homepage": "https://github.com/xulelenlp/dsh-web-artifact-designer#readme",
+  "bugs": {
+    "url": "https://github.com/xulelenlp/dsh-web-artifact-designer/issues"
+  }
+}
