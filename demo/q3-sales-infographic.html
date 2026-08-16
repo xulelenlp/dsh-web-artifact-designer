@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Q3 销售数据信息图</title>
+<style>
+  :root {
+    --bg: #0d1321;          /* 深蓝黑底 */
+    --surface: #141c2e;     /* 卡片 */
+    --ink: #f1f5f9;         /* 主文字 */
+    --muted: #8b9bb0;       /* 次要文字 */
+    --accent: #2dd4bf;      /* 青绿强调 */
+    --accent2: #f59e0b;     /* 琥珀第二系列 */
+    --line: #233047;        /* 细线 */
+    --s1: 4px; --s2: 8px; --s3: 16px; --s4: 24px; --s5: 36px; --s6: 52px; --s7: 72px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.6; -webkit-font-smoothing: antialiased;
+  }
+  .mono { font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace; }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 var(--s4); }
+
+  header { padding: var(--s6) 0 var(--s4); border-bottom: 1px solid var(--line); }
+  .head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s4); }
+  .kicker { font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+  h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; margin: var(--s2) 0 var(--s2); }
+  .head p { color: var(--muted); max-width: 52ch; }
+
+  /* KPI 卡片带 */
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s3); padding: var(--s5) 0; }
+  .kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: var(--s4); }
+  .kpi .cap { font-size: .78rem; color: var(--muted); letter-spacing: .05em; }
+  .kpi .num { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; margin-top: var(--s2); }
+  .kpi .delta { font-size: .82rem; margin-top: var(--s1); }
+  .up { color: var(--accent); } .down { color: var(--accent2); }
+
+  section { padding: var(--s4) 0; }
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: var(--s5); }
+  .panel h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: var(--s3); }
+  .panel h2 .mono { color: var(--muted); font-weight: 400; font-size: .8rem; margin-left: var(--s2); }
+
+  /* 柱状图（纯 SVG） */
+  .chart { width: 100%; height: auto; }
+  .bar { fill: var(--accent); opacity: .85; }
+  .bar.hot { fill: var(--accent2); }
+  .axis { stroke: var(--line); stroke-width: 1; }
+  .tick { fill: var(--muted); font-size: 11px; font-family: inherit; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3); }
+  .bullet { display: grid; grid-template-columns: 1fr auto; gap: var(--s2); padding: var(--s3) 0; border-bottom: 1px solid var(--line); }
+  .bullet:last-child { border-bottom: none; }
+  .bullet .k { color: var(--muted); }
+  .bullet .v { font-weight: 700; }
+
+  footer { padding: var(--s5) 0 var(--s6); color: var(--muted); font-size: .82rem; border-top: 1px solid var(--line); }
+
+  @media (max-width: 768px) {
+    .kpis { grid-template-columns: 1fr 1fr; }
+    .grid2 { grid-template-columns: 1fr; }
+    .head { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <div class="kicker">2026 · Q3 销售简报</div>
+        <h1>三季度营收增长 24.6%</h1>
+        <p>本季度整体表现稳健，企业服务与海外市场为主要增长引擎。</p>
+      </div>
+      <div class="mono" style="color:var(--muted); font-size:.85rem;">报告周期 07.01 – 09.30</div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="kpis">
+    <div class="kpi"><div class="cap">总营收</div><div class="num">¥ 4,820<small style="font-size:.5em;color:var(--muted)"> 万</small></div><div class="delta up">▲ 24.6% 同比</div></div>
+    <div class="kpi"><div class="cap">新增客户</div><div class="num">312</div><div class="delta up">▲ 18.2%</div></div>
+    <div class="kpi"><div class="cap">客单价</div><div class="num">¥ 15.4<small style="font-size:.5em;color:var(--muted)"> 万</small></div><div class="delta up">▲ 5.1%</div></div>
+    <div class="kpi"><div class="cap">续约率</div><div class="num">91.3%</div><div class="delta down">▼ 1.2pp</div></div>
+  </div>
+
+  <section>
+    <div class="panel">
+      <h2>各业务线营收 <span class="mono">/ BY LINE</span></h2>
+      <svg class="chart" viewBox="0 0 900 300" role="img" aria-label="各业务线营收柱状图">
+        <line class="axis" x1="40" y1="250" x2="880" y2="250"/>
+        <!-- 企业服务 -->
+        <rect class="bar" x="80"  y="90"  width="120" height="160" rx="4"/>
+        <text class="tick" x="140" y="272" text-anchor="middle">企业服务</text>
+        <text class="tick" x="140" y="75"  text-anchor="middle" fill="#2dd4bf" font-weight="700">1,860</text>
+        <!-- 海外市场 -->
+        <rect class="bar hot" x="260" y="130" width="120" height="120" rx="4"/>
+        <text class="tick" x="320" y="272" text-anchor="middle">海外市场</text>
+        <text class="tick" x="320" y="115" text-anchor="middle" fill="#f59e0b" font-weight="700">1,420</text>
+        <!-- 云服务 -->
+        <rect class="bar" x="440" y="155" width="120" height="95" rx="4"/>
+        <text class="tick" x="500" y="272" text-anchor="middle">云服务</text>
+        <text class="tick" x="500" y="140" text-anchor="middle" fill="#2dd4bf" font-weight="700">980</text>
+        <!-- 咨询 -->
+        <rect class="bar" x="620" y="195" width="120" height="55" rx="4"/>
+        <text class="tick" x="680" y="272" text-anchor="middle">咨询服务</text>
+        <text class="tick" x="680" y="180" text-anchor="middle" fill="#2dd4bf" font-weight="700">560</text>
+      </svg>
+      <p class="mono" style="color:var(--muted); font-size:.8rem; margin-top:var(--s2);">单位：万元 · 企业服务与海外市场合计贡献 68% 营收</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="grid2">
+      <div class="panel">
+        <h2>增长驱动 <span class="mono">/ DRIVERS</span></h2>
+        <div class="bullet"><span class="k">企业服务上云</span><span class="v">+32%</span></div>
+        <div class="bullet"><span class="k">海外东南亚扩张</span><span class="v">+41%</span></div>
+        <div class="bullet"><span class="k">老客户增购</span><span class="v">+12%</span></div>
+        <div class="bullet"><span class="k">新客获客</span><span class="v">+18%</span></div>
+      </div>
+      <div class="panel">
+        <h2>下一步 <span class="mono">/ NEXT</span></h2>
+        <div class="bullet"><span class="k">续约率回落</span><span class="v">重点跟进 Q3 到期客户</span></div>
+        <div class="bullet"><span class="k">Q4 目标</span><span class="v">营收 +20%，续约 ≥93%</span></div>
+        <div class="bullet"><span class="k">资源投放</span><span class="v">海外市场 +40% 预算</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">数据来源：公司财务系统 · 本页为自包含 HTML 信息图示例 · web-artifact-designer</div>
+</footer>
+
+</body>
+</html>
