@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Artifact 标题</title>
+<style>
+  /* ===== 设计系统（改这里就能换主题）===== */
+  :root {
+    --bg: #faf7f2;          /* 中性底色 */
+    --surface: #ffffff;     /* 卡片/面板 */
+    --text: #1c1917;        /* 主文字 */
+    --muted: #6b6560;       /* 次要文字 */
+    --primary: #b45309;     /* 主色 */
+    --primary-ink: #ffffff; /* 主色上的文字 */
+    --accent: #0e7490;      /* 辅色 */
+    --border: #e7e1d9;      /* 边框 */
+    /* 间距刻度 */
+    --s1: 4px; --s2: 8px; --s3: 16px; --s4: 24px; --s5: 32px; --s6: 48px; --s7: 64px;
+    /* 圆角刻度 */
+    --r1: 6px; --r2: 12px; --r3: 20px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 var(--s4); }
+
+  /* ===== 层级 ===== */
+  .display {
+    font-size: clamp(2.2rem, 4vw + 1rem, 4rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+  .subhead { font-size: 1.15rem; color: var(--muted); max-width: 56ch; }
+  .label {
+    font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--primary); font-weight: 600;
+  }
+
+  /* ===== 结构 ===== */
+  header { padding: var(--s5) 0; }
+  .nav { display: flex; justify-content: space-between; align-items: center; }
+  .logo { font-weight: 700; letter-spacing: -0.01em; }
+
+  .hero { padding: var(--s7) 0; display: grid; gap: var(--s4); }
+  .hero .cta { margin-top: var(--s3); }
+
+  section { padding: var(--s6) 0; }
+  .section-title { margin-bottom: var(--s5); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--s4);
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r2);
+    padding: var(--s4);
+  }
+  .card h3 { margin-bottom: var(--s2); }
+
+  /* ===== 组件 ===== */
+  .btn {
+    display: inline-block; padding: 12px 22px; border-radius: var(--r1);
+    background: var(--primary); color: var(--primary-ink);
+    font-weight: 600; text-decoration: none; border: none; cursor: pointer;
+    transition: transform .15s ease, opacity .15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); opacity: .92; }
+  .btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+
+  footer {
+    margin-top: var(--s6); padding: var(--s5) 0;
+    border-top: 1px solid var(--border); color: var(--muted); font-size: .9rem;
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding: var(--s5) 0; }
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap nav">
+      <span class="logo">Logo</span>
+      <a class="btn" href="#cta">行动按钮</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap hero">
+      <span class="label">Eyebrow 标签</span>
+      <h1 class="display">一句话说清你的<br>核心价值主张</h1>
+      <p class="subhead">这里是副标题，补充说明给谁、解决什么问题。保持一句话，别写长段落。</p>
+      <div class="cta">
+        <a class="btn" href="#cta">主要行动</a>
+        <a class="btn ghost" href="#features">了解更多</a>
+      </div>
+    </div>
+
+    <section id="features">
+      <div class="wrap">
+        <h2 class="section-title">三大特性</h2>
+        <div class="grid">
+          <div class="card"><h3>特性一</h3><p>一句话说明价值。简短、具体、不说废话。</p></div>
+          <div class="card"><h3>特性二</h3><p>一句话说明价值。简短、具体、不说废话。</p></div>
+          <div class="card"><h3>特性三</h3><p>一句话说明价值。简短、具体、不说废话。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cta">
+      <div class="wrap hero">
+        <h2 class="display" style="font-size: clamp(1.8rem, 3vw, 2.6rem);">准备好开始了吗？</h2>
+        <p class="subhead">最后一句收尾，把用户推向行动。</p>
+        <div><a class="btn" href="#">立即开始</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© 2026 你的名字 · 自包含 HTML 模板</div>
+  </footer>
+
+</body>
+</html>
